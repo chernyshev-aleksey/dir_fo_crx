@@ -19,11 +19,11 @@ def create_publickey(private_key):
     return data
 
 
-def get_zipped_data_and_basename_from_dir(dir):
-    if os.path.isdir(dir):
-        return zipdir(dir), dir
+def get_zipped_data_and_basename_from_dir(_dir):
+    if os.path.isdir(_dir):
+        return zipdir(_dir), _dir
     else:
-        raise IOError('Source is not a directory or zip file <%s>' % dir)
+        raise IOError('Source is not a directory or zip file <%s>' % _dir)
 
 
 def package(_dir, output):
@@ -64,9 +64,9 @@ def zipdir(directory, inject=None):
     zip_memory = io.BytesIO()
     with zipfile.ZipFile(zip_memory, 'w', zipfile.ZIP_DEFLATED) as zf:
 
-        def _rec_zip(path, parent='', inject=None):
-            if inject:
-                for fname, fdata in inject.items():
+        def _rec_zip(path, parent='', _inject=None):
+            if _inject:
+                for fname, fdata in _inject.items():
                     zf.writestr(fname, fdata)
 
             for d in os.listdir(path):
@@ -77,7 +77,7 @@ def zipdir(directory, inject=None):
                 if os.path.isdir(child):
                     _rec_zip(child, name)
 
-        _rec_zip(directory, '', inject=inject)
+        _rec_zip(directory, _inject=inject)
         zf.close()
         zipdata = zip_memory.getvalue()
         return zipdata

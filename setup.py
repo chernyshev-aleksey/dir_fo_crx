@@ -25,11 +25,13 @@ setuptools.setup(
     # Определяет тип контента, используемый в long_description.
     long_description_content_type="text/markdown",
     # URL-адрес, представляющий домашнюю страницу проекта. Большинство проектов ссылаются на репозиторий.
-    url="https://github.com/ericjaychi/sample-pypi-package",
+    url="https://github.com/chernyshev-aleksey/dir_fo_crx",
     # Находит все пакеты внутри проекта и объединяет их в дистрибутив.
     packages=setuptools.find_packages(),
     # requirements или dependencies, которые будут установлены вместе с пакетом, когда пользователь установит его через pip.
-    # install_requires=requirements,
+    install_requires=[
+        'cryptography>=37.0.2'
+    ],
     # Предоставляет pip некоторые метаданные о пакете. Также отображается на странице PyPi.
     classifiers=[
         "Programming Language :: Python :: 3.8",
